@@ -24,8 +24,19 @@ public class LoginAction extends HttpServlet {
 			session.setAttribute("id", "s");
 			//1.1.2 그리고 그 전 jsp로  돌려보낸다.
 			System.out.println("로긴성공~");
+			//전 jsp에서 세션에 저장한 url을 가져온다.
 			String url=(String)session.getAttribute("url");
-			response.sendRedirect(url);
+			//저장한 url이 있으면
+			if(url !=null) {
+				System.out.println(url);
+				//해당 url로 이동
+				response.sendRedirect(url);
+				
+			}
+			//저장한 url이 없으면
+			else {
+				response.sendRedirect("/index.jsp");
+			}
 		}
 		//1.2 아이디와 비밀번호가 일치하지 않는다면 
 		else {
